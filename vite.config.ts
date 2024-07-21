@@ -4,7 +4,7 @@ import { createAngularPlugin } from 'vite-plugin-angular';
 export default defineConfig({
   plugins: [createAngularPlugin()],
   server: {
-    open: true, 
+    open: true,
     port: 4200,
   },
 });

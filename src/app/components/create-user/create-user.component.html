@@ -1,0 +1,25 @@
+<h1 mat-dialog-title class="text-xl font-semibold mb-4">Crear Usuario</h1>
+<div mat-dialog-content class="p-4">
+  <form [formGroup]="userForm" class="space-y-4">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="userName" class="p-2 border rounded-md">
+      <mat-error *ngIf="userForm.get('userName')!.invalid && userForm.get('userName')!.touched" class="text-red-500">
+        El nombre de usuario es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="userPassWord" type="password" class="p-2 border rounded-md">
+      <mat-error *ngIf="userForm.get('userPassWord')!.invalid && userForm.get('userPassWord')!.touched" class="text-red-500">
+        La contraseña es obligatoria
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="p-4 flex justify-end space-x-2">
+  <button mat-button (click)="onCancel()" class="bg-gray-200 hover:bg-gray-300">Cancelar</button>
+  <button mat-button (click)="onSave()" [disabled]="!userForm.valid" class="bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">Guardar</button>
+</div>

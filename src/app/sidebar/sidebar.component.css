@@ -1,0 +1,49 @@
+/* sidebar.component.css */
+.bg-blue-500 {
+  background-color: #007bff; /* o el color que estés usando */
+}
+.min-h-screen {
+  min-height: 100vh;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.transition-all {
+  transition: all 0.3s ease;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.w-64 {
+  width: 16rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.space-x-2 {
+  margin-right: 0.5rem;
+}
+.text-white {
+  color: #fff;
+}
+.text-lg {
+  font-size: 1.125rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.hover\:bg-blue-600:hover {
+  background-color: #0056b3;
+}

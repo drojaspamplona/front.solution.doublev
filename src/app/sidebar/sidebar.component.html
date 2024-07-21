@@ -1,0 +1,31 @@
+<div [ngClass]="{'w-64': !isCollapsed, 'w-12': isCollapsed}" class="bg-blue-500 min-h-screen flex flex-col transition-all duration-300">
+  <header class="bg-blue-500 text-white p-4 w-full">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2" (click)="navigateTo('/home')">
+        <i class="fa-solid fa-cubes text-2xl"></i>
+        <span class="text-lg font-bold" *ngIf="!isCollapsed">DoubleV</span>
+      </div>
+      <button (click)="logout()" class="flex items-center space-x-2" *ngIf="!isCollapsed">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Salir</span>
+      </button>
+    </div>
+  </header>
+  <ul class="flex-1 mt-4 space-y-4">
+    <li class="text-white flex items-center space-x-2 p-2 hover:bg-blue-600" (click)="navigateTo('/home')">
+      <i class="fas fa-home"></i>
+      <span *ngIf="!isCollapsed">Inicio</span>
+    </li>
+    <li class="text-white flex items-center space-x-2 p-2 hover:bg-blue-600" (click)="navigateTo('/persons')">
+      <i class="fas fa-user"></i>
+      <span *ngIf="!isCollapsed">Personas</span>
+    </li>
+    <li class="text-white flex items-center space-x-2 p-2 hover:bg-blue-600" (click)="navigateTo('/users')">
+      <i class="fa-solid fa-key"></i>
+      <span *ngIf="!isCollapsed">Usuarios</span>
+    </li>
+  </ul>
+  <button class="p-4 text-white" (click)="toggleCollapse()">
+    <i class="fas" [ngClass]="{'fa-chevron-left': !isCollapsed, 'fa-chevron-right': isCollapsed}"></i>
+  </button>
+</div>

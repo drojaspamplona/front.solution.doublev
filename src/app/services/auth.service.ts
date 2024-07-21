@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { User } from '../../models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,15 @@ export class AuthService {
                 }),
                 catchError(() => of(false))
             );
+    }
+
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>(`${this.apiUrl}/Users`);
+    }
+
+    addUser(user: User): Observable<User> {
+        console.log(user)
+        return this.http.post<User>(`${this.apiUrl}/Users/create`, user);
     }
 
     logout(): void {
