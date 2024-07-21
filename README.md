@@ -1,27 +1,64 @@
-# FrontSolutionDoublev
+# Proyecto Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+## Descripción
 
-## Development server
+Este es un proyecto de aplicación Angular que se conecta a una API y utiliza una base de datos SQL Server para gestionar usuarios y personas.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requisitos
 
-## Code scaffolding
+- Node.js (v14 o superior)
+- Angular CLI
+- SQL Server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Configuración de la Base de Datos
 
-## Build
+Para configurar la base de datos, sigue estos pasos:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Ejecutar el Script de la Base de Datos**
 
-## Running unit tests
+   Ejecuta el siguiente script SQL en tu instancia de SQL Server para crear la base de datos, esquemas y tablas necesarios:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```sql
+   CREATE DATABASE DoublePartners;
+   USE DoublePartners;
 
-## Running end-to-end tests
+   CREATE SCHEMA Auth;
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   CREATE TABLE Auth.Users (
+       UserID INT IDENTITY(1,1) PRIMARY KEY,
+       UserName NVARCHAR(50) UNIQUE NOT NULL,
+       UserPassWord NVARCHAR(255) NOT NULL
+   );
 
-## Further help
+   INSERT INTO Auth.Users(UserName, UserPassWord) VALUES ('test', 'test');
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   CREATE SCHEMA Persons;
+
+   CREATE TABLE Persons.Persons (
+       IdPerson INT IDENTITY(1,1) PRIMARY KEY,
+       FirstName NVARCHAR(100) NOT NULL,
+       LastName NVARCHAR(100) NOT NULL,
+       IdentificationNumber NVARCHAR(50) NOT NULL,
+       Email NVARCHAR(255) NOT NULL,
+       IdentificationType NVARCHAR(50) NOT NULL,
+       CreationDate DATETIME DEFAULT GETDATE(),
+       FullIdentification AS (IdentificationNumber + '-' + IdentificationType),
+       FullName AS (FirstName + ' ' + LastName)
+   );
+
+   CREATE PROCEDURE GetPersons
+   AS
+   BEGIN
+       SELECT
+           IdPerson,
+           FirstName,
+           LastName,
+           IdentificationNumber,
+           Email,
+           IdentificationType,
+           CreationDate,
+           FullIdentification,
+           FullName
+       FROM Persons.Persons;
+   END;
+
